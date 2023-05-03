@@ -9,7 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-//import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Email;
+
 
 @Entity
 @Table(name="Sensei")
@@ -21,7 +22,7 @@ public class Sensei implements Serializable{
     @NonNull
     private String nombres,apellidos,direccion,numeroCelular;
     
-    //@Email
+    @Email
     private String email;
     
     @NonNull
