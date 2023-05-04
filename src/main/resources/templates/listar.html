@@ -47,7 +47,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="sen: ${sensei}">
-					<td th:text="${sen.id}"></td>
 					<td th:text="${sen.nombres}"></td>
 					<td th:text="${sen.apellidos}"></td>
 					<td th:text="${sen.direccion}"></td>
@@ -56,8 +55,8 @@
 					<td th:text="${sen.edad}"></td>
 					<td th:text="${sen.peso}"></td>
 					<td th:text="${sen.altura}"></td>
-					<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${sen.id}" th:text="'editar'"></a></td>
-					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${sen.id}" 
+					<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${sen.idSensei}" th:text="'editar'"></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${sen.idSensei}" 
 					th:text="'eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
 				</tr>
 			</tbody>

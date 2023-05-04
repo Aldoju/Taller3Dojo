@@ -25,8 +25,8 @@ public class SenseiController {
 	
 	@RequestMapping(value = "/listar",method = RequestMethod.GET)
 	public String listar(Model model) {
-		model.addAttribute("titulo","Listado de clientes");
-		model.addAttribute("clientes",senseiService.findAll());
+		model.addAttribute("titulo","Listado de sensei");
+		model.addAttribute("sensei",senseiService.findAll());
 		return "listar";
 	}
 	@RequestMapping(value = "/form")
@@ -61,8 +61,8 @@ public class SenseiController {
 		return "redirect:/listar";
 	}
 	
-	@RequestMapping(value="/eliminar/{id}")
-	public String eliminar(@PathVariable(value = "id") Long id) {
+	@RequestMapping(value="/eliminar/{idSensei}")
+	public String eliminar(@PathVariable(value = "idSensei") Long id) {
 		if(id>0) {
 			senseiService.delete(id);
 		}
