@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Dojo Bushin Karate Do</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Sensei</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/listarAl}">Alumno</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+			th:text="${titulo}"></h1>
+		<p><a th:href="@{/formAl}" class="btn btn-success btn-xs">crear alumno</a></p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>nombre</th>
+					<th>apellido</th>
+					<th>edad</th>
+					<th>nivel</th>
+					<th>direccion</th>
+					<th>celular</th>
+					<th>peso</th>
+					<th>altura</th>
+					<th>editar</th>
+					<th>eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="alumno: ${alumnos}">
+					<td th:text="${alumno.id}"></td>
+					<td th:text="${alumno.nombre}"></td>
+					<td th:text="${alumno.apellido}"></td>
+					<td th:text="${alumno.edad}"></td>
+					<td th:text="${alumno.nivel}"></td>
+					<td th:text="${alumno.direccion}"></td>
+					<td th:text="${alumno.celular}"></td>
+					<td th:text="${alumno.peso}"></td>
+					<td th:text="${alumno.altura}"></td>
+					<td><a class="btn btn-primary btn-xs" th:href="@{/formAl/} + ${alumno.id}" th:text="'editar'"></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminarAl/} + ${alumno.id}" 
+					th:text="'eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
