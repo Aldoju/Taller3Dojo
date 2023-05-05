@@ -61,12 +61,14 @@ public class SenseiController {
 		return "redirect:/listar";
 	}
 	
-	@RequestMapping(value="/eliminar/{idSensei}")
-	public String eliminar(@PathVariable(value = "idSensei") Long id) {
+	@RequestMapping(value="/eliminar/{id}")
+	public String eliminar(@PathVariable(value = "id") Long id) {
 		if(id>0) {
 			senseiService.delete(id);
 		}
 		return "redirect:/listar";
 	}	
+
+
     
 }

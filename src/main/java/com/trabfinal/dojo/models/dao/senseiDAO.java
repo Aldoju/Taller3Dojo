@@ -36,6 +36,6 @@ public class senseiDAO implements ISenseiDAO{
 
     @Override
 	public void delete(Long id) {
-		sen.remove(id);		
+		sen.remove(findOne(id));		
 	}
 }

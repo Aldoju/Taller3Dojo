@@ -47,6 +47,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="sen: ${sensei}">
+					<td th:text="${sen.idSensei}"></td>
 					<td th:text="${sen.nombres}"></td>
 					<td th:text="${sen.apellidos}"></td>
 					<td th:text="${sen.direccion}"></td>
