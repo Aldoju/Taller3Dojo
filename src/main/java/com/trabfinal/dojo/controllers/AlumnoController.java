@@ -30,6 +30,7 @@ public class AlumnoController {
 		model.addAttribute("alumnos",alumnoService.findAll());
 		return "alumno/listar";
 	}
+
 	@RequestMapping(value = "/formAl")
 	public String formularioAlumno(Map<String, Object> model) {
 		Alumno alumno=new Alumno();
@@ -37,6 +38,7 @@ public class AlumnoController {
 		model.put("titulo", "Formulario del Alumno");
 		return "alumno/frmAlumno";
 	}
+	
 	@RequestMapping(value = "/formAl/{id}")
 	public String editar(@PathVariable (value = "id") Long id,
 			Map<String, Object> model) {
@@ -48,7 +50,7 @@ public class AlumnoController {
 		}
 		model.put("alumno", alumno);
 		model.put("titulo", "Editar Alumno");		
-		return "alumno/frmAlumno";
+		return "redirect:/listarAl";
 	}
 	@RequestMapping(value = "/formAl", method = RequestMethod.POST)
 	public String registrar(@Validated Alumno alumno, BindingResult result,
@@ -59,7 +61,7 @@ public class AlumnoController {
 		}
 		alumnoService.save(alumno);
 		status.setComplete();
-		return "redirect:alumno/listar";
+		return "redirect:/listarAl";
 		//return "redirect:listar";
 	}
 	
@@ -68,7 +70,7 @@ public class AlumnoController {
 		if(id>0) {
 			alumnoService.delete(id);
 		}
-		return "redirect:alumno/listar";
+		return "redirect:/listarAl";
 	}	
 }
 

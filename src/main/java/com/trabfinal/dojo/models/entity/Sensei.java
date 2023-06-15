@@ -1,15 +1,21 @@
 package com.trabfinal.dojo.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.micrometer.common.lang.NonNull;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.persistence.CascadeType;
+
 
 
 @Entity
@@ -31,6 +37,14 @@ public class Sensei implements Serializable{
     @NonNull
     private double peso,altura;
 
+    @OneToMany(mappedBy="sensei",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+
+    private List<Alumno> alumnos;
+
+    public Sensei(){
+        alumnos=new ArrayList<Alumno>();
+    }
+    
     public Long getIdSensei() {
         return idSensei;
     }

@@ -1,14 +1,10 @@
 package com.trabfinal.dojo.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.trabfinal.dojo.models.entity.Sensei;
 
-public interface ISenseiDAO {
-    public List<Sensei> findAll();
-    public void save(Sensei sensei);
-    public Sensei findOne(Long id);
-    public void delete(Long id);
-    
+public interface ISenseiDAO extends PagingAndSortingRepository<Sensei, Long>,CrudRepository<Sensei,Long>{
 
 }
