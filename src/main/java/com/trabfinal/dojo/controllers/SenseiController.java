@@ -47,7 +47,7 @@ public class SenseiController {
 		}
 		model.put("sensei", sensei);
 		model.put("titulo", "Editar Sensei");		
-		return "sensei/frmSensei";
+		return "redirect:/listar";
 	}
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public String registrar(@Validated Sensei sensei, BindingResult result,
@@ -58,7 +58,7 @@ public class SenseiController {
 		}
 		senseiService.save(sensei);
 		status.setComplete();
-		return "sensei/listar";
+		return "redirect:/listar";
 	}
 	
 	@RequestMapping(value="/eliminar/{id}")
@@ -66,7 +66,7 @@ public class SenseiController {
 		if(id>0) {
 			senseiService.delete(id);
 		}
-		return "sensei/listar";
+		return "redirect:/listar";
 	}	
 
 

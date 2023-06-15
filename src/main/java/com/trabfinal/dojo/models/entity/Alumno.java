@@ -7,9 +7,11 @@ import java.io.Serializable;
 
 // import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 // import jakarta.persistence.Temporal;
 // import jakarta.persistence.TemporalType;
@@ -39,6 +41,10 @@ public class Alumno  implements Serializable{
     @NotEmpty
     private String altura;
     
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Sensei sensei;
+	
     private static  final long serialVersionUID=1L;
     
     public static long getSerialversionuid() {

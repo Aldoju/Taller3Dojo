@@ -16,12 +16,12 @@ public class senseiService implements ISenseiService {
 	@Autowired
     private ISenseiDAO senseiDao;
     
-    @Override
+	@Override
 	@Transactional(readOnly = true)
-	public List<Sensei> findAll() {		
-		return senseiDao.findAll();
+	public List<Sensei> findAll(){
+		return (List<Sensei>) senseiDao.findAll();
 	}
-
+	
     @Override
 	@Transactional 
 	public void save(Sensei sensei) {
@@ -31,13 +31,13 @@ public class senseiService implements ISenseiService {
 	@Override
 	@Transactional(readOnly = true)
 	public Sensei findOne(Long id) {		
-		return senseiDao.findOne(id);
+		return senseiDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		senseiDao.delete(id);		
+		senseiDao.deleteById(id);		
 	}
 
 
