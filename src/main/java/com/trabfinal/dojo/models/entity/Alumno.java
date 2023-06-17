@@ -40,11 +40,10 @@ public class Alumno  implements Serializable{
     private String peso;
     @NotEmpty
     private String altura;
-    
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Sensei sensei;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+    private Sensei sensei;
+    
     private static  final long serialVersionUID=1L;
     
     public static long getSerialversionuid() {
@@ -103,6 +102,12 @@ public class Alumno  implements Serializable{
 	}
 	public void setAltura(String altura) {
 		this.altura = altura;
+	}
+	public Sensei getSensei() {
+		return sensei;
+	}
+	public void setSensei(Sensei sensei) {
+		this.sensei = sensei;
 	}
 	
     

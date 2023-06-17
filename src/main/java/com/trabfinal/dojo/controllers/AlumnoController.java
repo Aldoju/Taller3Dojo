@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.trabfinal.dojo.models.entity.Alumno;
+import com.trabfinal.dojo.models.entity.Sensei;
 import com.trabfinal.dojo.models.services.IAlumnoService;
+import com.trabfinal.dojo.models.services.ISenseiService;
+
 
 
 @Controller
@@ -23,6 +26,9 @@ public class AlumnoController {
 
 	@Autowired
 	private IAlumnoService alumnoService;
+
+	@Autowired
+	private ISenseiService senseiService;
 	
 	@RequestMapping(value = "/listarAl",method = RequestMethod.GET)
 	public String listar(Model model) {
@@ -50,8 +56,27 @@ public class AlumnoController {
 		}
 		model.put("alumno", alumno);
 		model.put("titulo", "Editar Alumno");		
+		return "alumno/editar";
+	}
+
+
+	@RequestMapping(value = "/editAl", method = RequestMethod.POST)
+	public String editar(@Validated Alumno alumno,BindingResult result,
+		Model model, SessionStatus status) {
+		Sensei sensei=null;
+		Long idsense=alumno.getSensei().getIdSensei();
+		sensei=senseiService.findOne(idsense);
+		alumno.setSensei(sensei);
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Formulario del Alumno");
+			return "alumno/frmAlumno";
+		}
+		alumnoService.save(alumno);
+		status.setComplete();
 		return "redirect:/listarAl";
 	}
+
+
 	@RequestMapping(value = "/formAl", method = RequestMethod.POST)
 	public String registrar(@Validated Alumno alumno, BindingResult result,
 			Model model, SessionStatus status) {
@@ -62,7 +87,6 @@ public class AlumnoController {
 		alumnoService.save(alumno);
 		status.setComplete();
 		return "redirect:/listarAl";
-		//return "redirect:listar";
 	}
 	
 	@RequestMapping(value="/eliminarAl/{id}")

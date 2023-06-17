@@ -43,11 +43,11 @@ public class SenseiController {
 		if(id>0) {
 			sensei=senseiService.findOne(id);
 		}else {
-		   return "sensei/listar";		   
+		   return "redirect/listar";		   
 		}
 		model.put("sensei", sensei);
 		model.put("titulo", "Editar Sensei");		
-		return "redirect:/listar";
+		return "/sensei/frmSensei";
 	}
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public String registrar(@Validated Sensei sensei, BindingResult result,
