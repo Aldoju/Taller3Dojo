@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.trabfinal.dojo.models.entity.Alumno;
+import com.trabfinal.dojo.models.entity.Sensei;
 import com.trabfinal.dojo.models.services.IAlumnoService;
+import com.trabfinal.dojo.models.services.ISenseiService;
+
 
 
 @Controller
@@ -23,6 +26,9 @@ public class AlumnoController {
 
 	@Autowired
 	private IAlumnoService alumnoService;
+
+	@Autowired
+	private ISenseiService senseiService;
 	
 	@RequestMapping(value = "/listarAl",method = RequestMethod.GET)
 	public String listar(Model model) {
@@ -30,6 +36,7 @@ public class AlumnoController {
 		model.addAttribute("alumnos",alumnoService.findAll());
 		return "alumno/listar";
 	}
+
 	@RequestMapping(value = "/formAl")
 	public String formularioAlumno(Map<String, Object> model) {
 		Alumno alumno=new Alumno();
@@ -37,6 +44,7 @@ public class AlumnoController {
 		model.put("titulo", "Formulario del Alumno");
 		return "alumno/frmAlumno";
 	}
+	
 	@RequestMapping(value = "/formAl/{id}")
 	public String editar(@PathVariable (value = "id") Long id,
 			Map<String, Object> model) {
@@ -48,8 +56,27 @@ public class AlumnoController {
 		}
 		model.put("alumno", alumno);
 		model.put("titulo", "Editar Alumno");		
-		return "alumno/frmAlumno";
+		return "alumno/editar";
 	}
+
+
+	@RequestMapping(value = "/editAl", method = RequestMethod.POST)
+	public String editar(@Validated Alumno alumno,BindingResult result,
+		Model model, SessionStatus status) {
+		Sensei sensei=null;
+		Long idsense=alumno.getSensei().getIdSensei();
+		sensei=senseiService.findOne(idsense);
+		alumno.setSensei(sensei);
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Formulario del Alumno");
+			return "alumno/frmAlumno";
+		}
+		alumnoService.save(alumno);
+		status.setComplete();
+		return "redirect:/listarAl";
+	}
+
+
 	@RequestMapping(value = "/formAl", method = RequestMethod.POST)
 	public String registrar(@Validated Alumno alumno, BindingResult result,
 			Model model, SessionStatus status) {
@@ -59,8 +86,7 @@ public class AlumnoController {
 		}
 		alumnoService.save(alumno);
 		status.setComplete();
-		return "redirect:alumno/listar";
-		//return "redirect:listar";
+		return "redirect:/listarAl";
 	}
 	
 	@RequestMapping(value="/eliminarAl/{id}")
@@ -68,7 +94,7 @@ public class AlumnoController {
 		if(id>0) {
 			alumnoService.delete(id);
 		}
-		return "redirect:alumno/listar";
+		return "redirect:/listarAl";
 	}	
 }
 

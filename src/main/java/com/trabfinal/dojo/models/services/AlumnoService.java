@@ -10,16 +10,17 @@ import com.trabfinal.dojo.models.dao.IAlumnoDAO;
 import com.trabfinal.dojo.models.entity.Alumno;
 
 
+
 @Service
 public class AlumnoService  implements IAlumnoService{
 
 	@Autowired
 	private  IAlumnoDAO alumnoDAO;
-	
+
 	@Override
-	@Transactional(readOnly = true) 
-	public List<Alumno> findAll() {		
-		return alumnoDAO.findAll();
+	@Transactional(readOnly = true)
+	public List<Alumno> findAll(){
+		return (List <Alumno>) alumnoDAO.findAll();
 	}
 
 	@Override
@@ -31,13 +32,13 @@ public class AlumnoService  implements IAlumnoService{
 	@Override
 	@Transactional(readOnly = true)
 	public Alumno findOne(Long id) {		
-		return alumnoDAO.findOne(id);
+		return alumnoDAO.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		alumnoDAO.delete(id);		
+		alumnoDAO.deleteById(id);		
 	}
 
 }

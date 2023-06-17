@@ -32,7 +32,7 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
 			</ul>
 		</div>
-		<form th:action="@{/formAl}" th:object="${alumno}" method="post">
+		<form th:action="@{/editAl}" th:object="${alumno}" method="post">
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-6">
@@ -106,27 +106,18 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 				</div>
 			</div>
 
-			<!-- <div class="form-group row">
-				<label for="buscar_sensei" class="col-sm-2 col-form-label"
-					th:text="'Sensei'"></label>
-				<div class="col-sm-6">
-					<input type="text" name="buscar_sensei" id="buscar_sensei"
-						class="form-control" />
+			<!-- <form th:action="@{/editAl}" th:object="${alumno}" method="post"></form> -->
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Sensei</label>
+					<div class="col-sm-6">
+						<input type="text" th:field="*{sensei.idSensei}" class="form-control"
+							th:errorclass="'form-control alert-danger'" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('sensei.idSensei')}" th:errors="*{sensei.idSensei}"></small>
+					</div>
 				</div>
-			</div> -->
+			<!-- <form>-->
 
-			
-
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Sensei</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{sensei.idSensei}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('sensei.idSensei')}" th:errors="*{sensei.idSensei}"></small>
-				</div>
-			</div>
-			
 			<div class="form-group row">
 				<div class="col-sm-6">
 					<input type="submit" value="Crear alumno" class="btn btn-primary" />
