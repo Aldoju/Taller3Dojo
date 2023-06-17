@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.micrometer.common.lang.NonNull;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,9 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.CascadeType;
-
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -26,16 +24,16 @@ public class Sensei implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSensei;
 
-    @NonNull
+    @NotNull
     private String nombres,apellidos,direccion,numeroCelular;
     
     @Email
     private String email;
     
-    @NonNull
+    @NotNull
     private int edad;
 
-    @NonNull
+    @NotNull
     private double peso,altura;
 
     @OneToMany(mappedBy="sensei",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
