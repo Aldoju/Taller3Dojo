@@ -8,20 +8,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Dojo Bushin Karate Do</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Sensei</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/listarAl}">Alumno</a></li>
-			</ul>
-		</div>
-	</nav>
+	<header th:replace="fragments/header :: header"></header>
 
 	<div class="container">
 		<h1
@@ -36,12 +23,13 @@
 					<th>apellido</th>
 					<th>edad</th>
 					<th>nivel</th>
-					<th>direccion</th>
 					<th>celular</th>
 					<th>peso</th>
 					<th>altura</th>
+					<th>Sensei</th>
 					<th>editar</th>
 					<th>eliminar</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -51,10 +39,10 @@
 					<td th:text="${alumno.apellido}"></td>
 					<td th:text="${alumno.edad}"></td>
 					<td th:text="${alumno.nivel}"></td>
-					<td th:text="${alumno.direccion}"></td>
 					<td th:text="${alumno.celular}"></td>
 					<td th:text="${alumno.peso}"></td>
 					<td th:text="${alumno.altura}"></td>
+					<td th:text="${alumno.sensei.nombres +' ' + alumno.sensei.apellidos}"></td>
 					<td><a class="btn btn-primary btn-xs" th:href="@{/formAl/} + ${alumno.id}" th:text="'editar'"></a></td>
 					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminarAl/} + ${alumno.id}" 
 					th:text="'eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
