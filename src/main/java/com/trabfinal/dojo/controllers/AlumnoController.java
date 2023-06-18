@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -55,23 +57,36 @@ public class AlumnoController {
 		   return "redirect:alumno/listar";		   
 		}
 		model.put("alumno", alumno);
+		// mod.addAttribute("sensei",senseiService.findAll());
 		model.put("titulo", "Editar Alumno");		
 		return "alumno/editar";
 	}
+
+	
+	@RequestMapping(value = "/obtesen/{id}")
+	public Long obteSensei(@Validated Alumno alumno,@PathVariable (value = "id") Long id) {
+		alumno.setSensei(senseiService.findOne(id));
+		return alumno.getSensei().getIdSensei();
+	}
+
+	// @GetMapping(value = "/cargar-productos/{term}", produces = { "application/json" })
+	// public @ResponseBody List<Producto> cargarSensei(@PathVariable String term) {
+	// 	return clienteService.findByNombre(term);
+	// }
 
 
 	@RequestMapping(value = "/editAl", method = RequestMethod.POST)
 	public String editar(@Validated Alumno alumno,BindingResult result,
 		Model model, SessionStatus status) {
-		Sensei sensei=null;
-		Long idsense=alumno.getSensei().getIdSensei();
-		sensei=senseiService.findOne(idsense);
-		alumno.setSensei(sensei);
+		Long codsen=alumno.getSensei().getIdSensei();
+		alumno.setSensei(senseiService.findOne(codsen));
+		alumnoService.save(alumno);
+
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario del Alumno");
 			return "alumno/frmAlumno";
 		}
-		alumnoService.save(alumno);
+		
 		status.setComplete();
 		return "redirect:/listarAl";
 	}
