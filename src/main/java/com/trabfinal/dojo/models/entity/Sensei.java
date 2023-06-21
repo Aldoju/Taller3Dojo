@@ -1,7 +1,6 @@
 package com.trabfinal.dojo.models.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -10,10 +9,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 
 
@@ -22,6 +24,7 @@ import jakarta.validation.constraints.NotNull;
 public class Sensei implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column( name = "idSensei")
     private Long idSensei;
 
     @NotNull
@@ -36,13 +39,37 @@ public class Sensei implements Serializable{
     @NotNull
     private double peso,altura;
 
-    @OneToMany(mappedBy="sensei",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 
-    private List<Alumno> alumnos;
+    @OneToMany(mappedBy = "sensei",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Horario> horario;
 
-    public Sensei(){
-        alumnos=new ArrayList<Alumno>();
+    @ManyToOne(fetch = FetchType.LAZY)
+	private Clase clase;
+
+    //relacion de muchos a muchos con evento
+    //relacion de uno a muchos con evento-profesor
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idSensei")
+	private List<EventoSensei> items;
+
+
+
+    public List<Horario> getHorarios() {
+        return horario;
     }
+
+    public void setHorarios(List<Horario> horario) {
+        this.horario = horario;
+    }
+
+    // public Clase getClases() {
+    //     return clases;
+    // }
+
+    // public void setClases(Clase clases) {
+    //     this.clases = clases;
+    // }   
     
     public Long getIdSensei() {
         return idSensei;
