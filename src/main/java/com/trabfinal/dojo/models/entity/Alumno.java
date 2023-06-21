@@ -2,16 +2,23 @@ package com.trabfinal.dojo.models.entity;
 
 import java.io.Serializable;
 // import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 
 // import org.springframework.format.annotation.DateTimeFormat;
 
 // import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+//mport jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 // import jakarta.persistence.Temporal;
 // import jakarta.persistence.TemporalType;
@@ -22,6 +29,7 @@ import jakarta.validation.constraints.NotEmpty;
 public class Alumno  implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idAlumno")
 	private Long id;
     
     @NotEmpty
@@ -31,8 +39,6 @@ public class Alumno  implements Serializable{
     @NotEmpty
     private String edad;
     @NotEmpty
-    private String nivel;
-    @NotEmpty
     private String direccion;
     @NotEmpty
     private String celular;
@@ -41,8 +47,22 @@ public class Alumno  implements Serializable{
     @NotEmpty
     private String altura;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-    private Sensei sensei;
+	@ManyToOne
+	private Clase clase;
+
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idAlumno")
+	private List<AlumnoEvento> aluEven;
+
+
+	public Clase getClase(){
+		return clase;
+	}
+	public void setClase(Clase clase){
+		this.clase = clase;
+	}
+
     
     private static  final long serialVersionUID=1L;
     
@@ -73,12 +93,6 @@ public class Alumno  implements Serializable{
 	public void setEdad(String edad) {
 		this.edad = edad;
 	}
-	public String getNivel() {
-		return nivel;
-	}
-	public void setNivel(String nivel) {
-		this.nivel = nivel;
-	}
 	public String getDireccion() {
 		return direccion;
 	}
@@ -102,12 +116,6 @@ public class Alumno  implements Serializable{
 	}
 	public void setAltura(String altura) {
 		this.altura = altura;
-	}
-	public Sensei getSensei() {
-		return sensei;
-	}
-	public void setSensei(Sensei sensei) {
-		this.sensei = sensei;
 	}
 	
     
