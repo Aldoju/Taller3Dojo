@@ -62,14 +62,6 @@ public class Sensei implements Serializable{
     public void setHorarios(List<Horario> horario) {
         this.horario = horario;
     }
-
-    // public Clase getClases() {
-    //     return clases;
-    // }
-
-    // public void setClases(Clase clases) {
-    //     this.clases = clases;
-    // }   
     
     public Long getIdSensei() {
         return idSensei;
@@ -141,6 +133,30 @@ public class Sensei implements Serializable{
 
     public void setAltura(double altura) {
         this.altura = altura;
+    }
+
+    public List<Horario> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(List<Horario> horario) {
+        this.horario = horario;
+    }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
+    }
+
+    public List<EventoSensei> getItems() {
+        return items;
+    }
+
+    public void setItems(List<EventoSensei> items) {
+        this.items = items;
     }
     
 }

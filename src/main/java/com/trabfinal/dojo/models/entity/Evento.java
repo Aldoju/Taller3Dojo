@@ -19,6 +19,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 @Table(name = "eventos" )
@@ -41,7 +42,8 @@ public class Evento implements Serializable {
     @ManyToOne
 	private Clase clase;
 
-	
+	@ManyToMany(mappedBy = "eventos")
+	private List<Alumno> alumnos;
 
 	public Clase getClase(){
 		return clase;
@@ -75,5 +77,11 @@ public class Evento implements Serializable {
     public void setFecha( Date fecha){
         this.fecha=fecha;
     }
+	public List<Alumno> getAlumnos() {
+		return alumnos;
+	}
+	public void setAlumnos(List<Alumno> alumnos) {
+		this.alumnos = alumnos;
+	}
 
 }
