@@ -17,6 +17,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -51,9 +53,13 @@ public class Alumno  implements Serializable{
 	private Clase clase;
 
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idAlumno")
-	private List<AlumnoEvento> aluEven;
+	@ManyToMany
+    @JoinTable(
+        name="AlumnoEvento",
+        joinColumns = @JoinColumn( name="idAlumno"),
+        inverseJoinColumns = @JoinColumn(name="idEvento")
+    )
+	private List<Evento> eventos;
 
 
 	public Clase getClase(){
@@ -116,6 +122,12 @@ public class Alumno  implements Serializable{
 	}
 	public void setAltura(String altura) {
 		this.altura = altura;
+	}
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
 	}
 	
     

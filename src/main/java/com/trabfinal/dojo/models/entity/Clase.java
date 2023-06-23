@@ -10,11 +10,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 
 
 @Entity
@@ -23,6 +25,7 @@ public class Clase implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idClase")
     private Long id;
 
     @NotEmpty
@@ -31,7 +34,8 @@ public class Clase implements Serializable{
     @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Alumno> alumnos;
 
-
+    @ManyToMany(mappedBy = "clase")
+	private List<Grado> grados;
 
     @OneToMany( mappedBy = "clase", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     private List<Evento> eventos;
@@ -39,9 +43,6 @@ public class Clase implements Serializable{
     @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Sensei> senseis;
 
-    @OneToOne
-    @JoinColumn(name="idGrado")
-    private Grado grado;
 
     public Long getId() {
         return id;
@@ -83,15 +84,13 @@ public class Clase implements Serializable{
         this.senseis = senseis;
     }
 
-    public Grado getGrado() {
-        return grado;
+
+    public List<Grado> getGrados() {
+        return grados;
     }
 
-    public void setGrado(Grado grado) {
-        this.grado = grado;
-    }
-    
-    
-    
+    public void setGrados(List<Grado> grados) {
+        this.grados = grados;
+    }        
     
 }

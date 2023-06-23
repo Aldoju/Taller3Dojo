@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/
+bootstrap.min.css">
+</head>
+
+<header th:replace="fragments/header :: header"></header>
+
+<body>
+
+<div class="container" center>
+    <div th:object="${horario}" th:remove="tag">
+        <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <form th:action="@{/formHor}" th:object="${horario}" method="post" enctype="multipart/form-data">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Dias</label>
+            <div class="col-sm-6">
+            <input type="text" th:field="*{dias}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+            class="form-text text-danger" th:if="${#fields.hasErrors('dias')}" th:errors="*{dias}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Hora</label>
+            <div class="col-sm-6">
+            <input type="text" th:field="*{horas}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+            class="form-text text-danger" th:if="${#fields.hasErrors('horas')}" th:errors="*{horas}"></small>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="submit" value="Crear horario" class="btn btn-secondary" />
+                </div>
+            </div>
+    </form>
+    
+    
+</div>
+
+
+</body>
+</html>
+
+  
