@@ -4,85 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preguntas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"></head>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+      .preguntas-fondo {
+        background-image: url("/img/Fondo.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% auto; 
+        background-position: center; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        font-size: 95px;
+        font-family: 'Times New Roman', Times, serif;
+        color: red;
+      }
+      .preguntas-columna {
+        width: 300px; 
+        position: sticky;
+        top: 0;
+        text-align: center;
+      }
+      .preguntas-columna a {
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 3px solid #ccc;
+        border-radius: 5px;
+        font-size: 18px;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+      }
+      .mensaje-final {
+        font-size: 20px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .fixed-image {
+        position: fixed;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+      }
+      .respuestas {
+        font-family: 'Times New Roman', Times, serif;
+      } 
+      .respuestas p {
+        font-size: 20px;
+      }
+      .respuestas h2{
+        color:chocolate;
+      }
+    </style>
 </head>
 <body>
     <header th:replace="fragments/header :: header"></header>
-    <h1 class="container text-center">  Preguntas Frecuentes </h1>
-    
-    <table>
-      <tr>
-        <td>
-          <a href="#pregunta1">Pregunta 1</a></p>
-          <a href="#pregunta2">Pregunta 2</a></p>
-          <a href="#pregunta3">Pregunta 3</a></p>
-          <a href="#pregunta4">Pregunta 4</a></p>
-          <a href="#pregunta5">Pregunta 5</a></p>
-          <a href="#pregunta6">Pregunta 6</a></p>
-          <a href="#pregunta7">Pregunta 7</a></p>
-          <a href="#pregunta8">Pregunta 8</a></p>
-          <a href="#pregunta9">Pregunta 9</a></p>
-          <a href="#pregunta10">Pregunta 10</a></p>
-
-        </td>
-        <td rowspan="2">
-          <h2 id="pregunta1">Pregunta 1</h2>
-          <b><p>Mi hijo no tiene experiencia en artes marciales, ¿Puedo matricularlo?</p></b>
+    <div class="preguntas-fondo">Preguntas Frecuentes</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1 preguntas-columna">
+          <a href="#pregunta1">Mi hijo no tiene experiencia en artes marciales, ¿Puedo matricularlo?</a>
+          <a href="#pregunta2">Tengo mal estado físico, ¿Puedo matricularme?</a>
+          <a href="#pregunta3">¿Cuáles son los requisitos para inscribirme?</a>
+          <a href="#pregunta4">¿Cómo debo ir vestido?</a>
+          <a href="#pregunta5">¿Cuándo se inicia el próximo curso?</a>
+          <a href="#pregunta6">¿Cuál es la edad máxima para inscribirse?</a>
+          <a href="#pregunta7">¿Desde qué edad pueden practicar los niños?</a>
+          <a href="#pregunta8">¿Hay horarios o cursos especiales para niños?</a>
+          <a href="#pregunta9">¿Cuáles son las formas de pago?</a>
+          <a href="#pregunta10">Aún no me decido, ¿Puedo ir a ver una clase?</a>
+        </div>
+        <div class="col-md-9 respuestas">
+          <h2 id="pregunta1">Mi hijo no tiene experiencia en artes marciales, ¿Puedo matricularlo?</h2>
           <p>Absolutamente sí. Las artes marciales son para todos y se parte desde cero.</p>
 
-          <h2 id="pregunta2">Pregunta 2</h2>
-          <b><p>Tengo mal estado físico, ¿Puedo matricularme?</p></b>
-          <p>Por supuesto. En la enseñanza de Karate buscamos promover la salud, por lo cual te exigiremos de manera acorde a tus
-              capacidades, esperando de ti la disciplina y esfuerzo para mejorar tu propia condición. Si vez que tienes complicaciones,
-              puedes consultar a un médico previamente para que chequee tu estado de salud.</p>
+          <h2 id="pregunta2">Tengo mal estado físico, ¿Puedo matricularme?</h2>
+          <p>Por supuesto. En la enseñanza de Karate buscamos promover la salud, por lo cual te exigiremos de manera acorde a tus capacidades, esperando de ti la disciplina y esfuerzo para mejorar tu propia condición. Si ves que tienes complicaciones, puedes consultar a un médico previamente para que cheque tu estado de salud.</p>
 
-          <h2 id="pregunta3">Pregunta 3</h2>
-          <b><p>¿Cuándo se inicia el próximo curso?</p></b>
-          <p>En Karate Yushindo la enseñanza es personalizada, no es como un curso, aquí el ingreso es permanente durante todo el
-              año, pues cada clase se inicia con ejercicios comunes y luego se separan en grupos de similar avance.</p>
-         
-          <h2 id="pregunta4">Pregunta 4</h2>
-          <b><p>¿Cómo debo ir vestido?</p></b>
-          <p>En Yushindo utilizamos un uniforme según el sistema de grados, el cual puedes adquirir después. Durante las primeras
-              clases puedes asistir con un buzo de preferencia blanco y polo (mejor si es blanco). En Yushindo lo puedes practicar
-              descalzo o en calcetines.</p> 
+          <h2 id="pregunta3">¿Cuáles son los requisitos para inscribirme?</h2>
+          <p>Para inscribirte, te recomendamos que llegues siempre temprano, cancelas tu matrícula y primera mensualidad y ya
+            puedes integrarte a la clase. Buscamos que te comprometas contigo mismo para que vayas progresando acorde a tus
+            propias capacidades.</p>
 
-          <h2 id="pregunta5">Pregunta 5</h2>
-          <b><p>¿Cuándo se inicia el próximo curso?</p></b>
-          <p>En Karate Yushindo la enseñanza es personalizada, no es como un curso, aquí el ingreso es permanente durante todo el
-              año, pues cada clase se inicia con ejercicios comunes y luego se separan en grupos de similar avance.</p>
-          
-          <h2 id="pregunta6">Pregunta 6</h2>
-          <b><p>¿Cuál es la edad máxima para inscribirse?</p></b>
-          <p>No hay edad. En países orientales es común ver a personas de más de 60 años practicando este deporte. Si quiere
-              integrarse teniendo un estado de salud delicado, debe entrevistarse previamente con el Sensei Daniel Valle, para analizar
-              la conveniencia u opciones de práctica.</p>
+          <h2 id="pregunta4">¿Cómo debo ir vestido?</h2>
+          <p>En Yushindo utilizamos un uniforme según el sistema de grados, el cual puedes adquirir después. Durante las primeras clases puedes asistir con un buzo de preferencia blanco y polo (mejor si es blanco). En Yushindo lo puedes practicar descalzo o en calcetines.</p> 
 
-          <h2 id="pregunta7">Pregunta 7</h2>
-          <b><p>¿Desde qué edad pueden practicar los niños?</p></b>
-          <p>Recomendamos que sea a partir de los 3 años. Para menores de esa edad, excepcionalmente se podría aprobar su
-              ingreso mediante entrevista y evaluación con el Sensei Daniel Valle. Cuanto más pequeño inicia sus prácticas en Karate,
-              será de mejor provecho. Siempre recomendamos la práctica del Karate como disciplina inicial.</p>
+          <h2 id="pregunta5">¿Cuándo se inicia el próximo curso?</h2>
+          <p>En Karate Yushindo la enseñanza es personalizada, no es como un curso, aquí el ingreso es permanente durante todo el año, pues cada clase se inicia con ejercicios comunes y luego se separan en grupos de similar avance.</p>
 
-          <h2 id="pregunta8">Pregunta 8</h2>
-          <b><p>¿Hay horarios o cursos especiales para niños?</p></b>
-          <p>Si. Nuestras clases son según las edades.</p>
+          <h2 id="pregunta6">¿Cuál es la edad máxima para inscribirse?</h2>
+          <p>No hay edad. En países orientales es común ver a personas de más de 60 años practicando este deporte. Si quieres integrarte teniendo un estado de salud delicado, debes entrevistarte previamente con el Sensei Daniel Valle, para analizar la conveniencia u opciones de práctica.</p>
 
-          <h2 id="pregunta9">Pregunta 9</h2>          
-          <b><p>¿Cuáles son las formas de pago?</p></b>
+          <h2 id="pregunta7">¿Desde qué edad pueden practicar los niños?</h2>
+          <p>Recomendamos que sea a partir de los 3 años. Para menores de esa edad, excepcionalmente se podría aprobar su ingreso mediante entrevista y evaluación con el Sensei Daniel Valle. Cuanto más pequeño inicie sus prácticas en Karate, será de mejor provecho. Siempre recomendamos la práctica del Karate como disciplina inicial.</p>
+
+          <h2 id="pregunta8">¿Hay horarios o cursos especiales para niños?</h2>
+          <p>Sí. Nuestras clases son según las edades.</p>
+
+          <h2 id="pregunta9">¿Cuáles son las formas de pago?</h2>
           <p>Sólo aceptamos efectivo, cheque o transferencia bancaria.</p>
 
-          <h2 id="pregunta10">Pregunta 10</h2>
-          <b><p>Aún no me decido, ¿Puedo ir a ver una clase?</p></b>
+          <h2 id="pregunta10">Aún no me decido, ¿Puedo ir a ver una clase?</h2>
           <p>Sí, llega unos 20 minutos antes para que converses con el instructor y te dé acceso a ver la clase.</p>
-        </td>
-      </tr>
-    </table>
-    
-    <p>¿Tienes más dudas? Si has leído estos párrafos y aún persisten tus inquietudes, puedes ponerte en contacto con
-        nosotros a través del chat en línea o directamente llamando al WhatsApp. 999 655 717.</p>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        </div>
+      </div>
+    </div>
+      <b><p class="mensaje-final">¿Tienes más dudas? Si has leído estos párrafos y aún persisten tus inquietudes, puedes ponerte en contacto con nosotros a través del chat en línea o directamente llamando al WhatsApp. 999 655 717.</p></b>
+      <img src="/img/Karate.png" alt="Imagen" class="fixed-image">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
