@@ -10,22 +10,22 @@ bootstrap.min.css">
 <body>
     <header th:replace="fragments/header :: header"></header>
     <div class="container" center>
-    <a th:href="@{/formHor}" class="btn btn-primary">Crear horario</a>
+    <a th:href="@{/formCla}" class="btn btn-primary">Crear objeto</a>
     <hr>
     <table class="table table-dark table-hover">
         <thead>
             <tr>
-                <th>id</th><th>Dias</th><th>Hora</th>
+                <th>id</th><th>Nombre</th><th>Desripcion</th>
                 <th>Editar</th><th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="horario : ${horarios}">
-                <td th:text="${horario.idHorario}"></td>
-                <td th:text="${horario.dias}"></td>
-                <td th:text="${horario.horas}"></td>
-                <td><a class="btn btn-primary btn-sm" th:href="@{/formHor/} + ${horario.idHorario}" th:text="'editar'"></a></td>
-                <td><a class="btn btn-danger btn-sm" th:href="@{/eliminarHor/} + ${horario.idHorario}"
+            <tr th:each="objeto : ${clase}">
+                <td th:text="${objeto.id}"></td>
+                <td th:text="${objeto.nombre}"></td>
+                <td th:text="${objeto.descripcion}"></td>
+                <td><a class="btn btn-primary btn-sm" th:href="@{/formCla/} + ${objeto.id}" th:text="'editar'"></a></td>
+                <td><a class="btn btn-danger btn-sm" th:href="@{/eliminarCla/} + ${objeto.id}"
                 th:text="'eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
         </tbody>
     </table>
