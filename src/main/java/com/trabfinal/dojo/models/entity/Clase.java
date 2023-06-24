@@ -31,6 +31,9 @@ public class Clase implements Serializable{
     @NotEmpty
     private String nombre;
 
+    @NotEmpty
+    private String descripcion;
+
     @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Alumno> alumnos;
 
@@ -91,6 +94,15 @@ public class Clase implements Serializable{
 
     public void setGrados(List<Grado> grados) {
         this.grados = grados;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }        
+    
     
 }
