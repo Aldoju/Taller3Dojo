@@ -1,6 +1,6 @@
 package com.trabfinal.dojo.models.entity;
 
-import java.io.Serializable;
+
 
 import jakarta.persistence.*;
 
