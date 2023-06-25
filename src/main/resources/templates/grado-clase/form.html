@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/
+bootstrap.min.css">
+</head>
+
+<header th:replace="fragments/header :: header"></header>
+
+<body>
+
+<div class="container" center>
+    <div th:object="${gc}" th:remove="tag">
+        <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <form th:action="@{/formGraCla}" th:object="${gc}" method="post" enctype="multipart/form-data">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Clase</label>
+            <div class="col-sm-1">
+            <input type="text" id="inputclase" th:field="*{clase.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+            class="form-text text-danger" th:if="${#fields.hasErrors('clase.id')}" th:errors="*{clase.id}"></small>
+            </div>
+            <select class="form-select" id="selectclase" aria-label="Default select example" th:field="*{clase.id}">
+                <option value="" disabled selected>Selecciona una clase</option>
+                <option th:each="clase : ${clases}" th:value="${clase.id}" th:text="${clase.nombre}"></option>
+            </select>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Grado</label>
+            <div class="col-sm-1">
+            <input type="text" id="inputgrado" th:field="*{grado.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+            class="form-text text-danger" th:if="${#fields.hasErrors('grado.id')}" th:errors="*{grado.id}"></small>
+            </div>
+            <select class="form-select" id="selectgrado" aria-label="Default select example" th:field="*{grado.id}">
+                <option value="" disabled selected>Selecciona una clase</option>
+                <option th:each="grado : ${grados}" th:value="${grado.id}" th:text="${grado.nombre}"></option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+                <div class="col-sm-6">
+                    <input type="submit" value="Crear gc" class="btn btn-secondary" />
+                </div>
+            </div>
+    </form>
+    
+    
+</div>
+
+<script>
+    document.getElementById('selectclase').addEventListener('change', function() {
+        var selectedValue = this.value;
+        document.getElementById('inputclase').value = selectedValue;
+    });
+
+    document.getElementById('selectgrado').addEventListener('change', function() {
+        var selectedValue = this.value;
+        document.getElementById('inputgrado').value = selectedValue;
+    });
+</script>
+
+
+</body>
+</html>
+
+  

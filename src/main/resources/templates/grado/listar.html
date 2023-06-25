@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/
+bootstrap.min.css">
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <div class="container" center>
+    <a th:href="@{/formGra}" class="btn btn-primary">Crear objeto</a>
+    <hr>
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>id</th><th>Nombre</th>
+                <th>Editar</th><th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="objeto : ${grado}">
+                <td th:text="${objeto.id}"></td>
+                <td th:text="${objeto.nombre}"></td>
+                <td><a class="btn btn-primary btn-sm" th:href="@{/formGra/} + ${objeto.id}" th:text="'editar'"></a></td>
+                <td><a class="btn btn-danger btn-sm" th:href="@{/eliminarGra/} + ${objeto.id}"
+                th:text="'eliminar'" onclick="return confirm('EstÃ¡s seguro que quieres eliminar?');"></a></td>
+        </tbody>
+    </table>
+    <nav th:replace="fragments/paginator-nav :: paginator"></nav>
+    </div>
+
+</body>

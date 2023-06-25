@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.trabfinal.dojo.models.entity.Clase;
-import com.trabfinal.dojo.models.entity.Horario;
 
 
 
