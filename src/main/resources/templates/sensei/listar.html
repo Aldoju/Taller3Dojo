@@ -25,8 +25,7 @@
 					<th>Celular</th>
 					<th>email</th>
 					<th>edad</th>
-					<th>peso</th>
-					<th>altura</th>
+					<th>Clase</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,8 +37,8 @@
 					<td th:text="${sen.numeroCelular}"></td>
 					<td th:text="${sen.email}"></td>
 					<td th:text="${sen.edad}"></td>
-					<td th:text="${sen.peso}"></td>
-					<td th:text="${sen.altura}"></td>
+					<td th:text="${sen.clase.nombre}"></td>
+
 					<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${sen.idSensei}" th:text="'editar'"></a></td>
 					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${sen.idSensei}" 
 					th:text="'eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
