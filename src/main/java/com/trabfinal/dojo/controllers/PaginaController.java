@@ -9,8 +9,9 @@ public class PaginaController {
     public String preguntas(){
         return "frames/preguntas";
     }
-     @GetMapping("/contactos")
-    public String contactoString(){
+
+    @GetMapping("/contactos")
+    public String contactos(){
         return "frames/contactos";
     }
 }
