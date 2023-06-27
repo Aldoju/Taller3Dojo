@@ -35,7 +35,7 @@ public class ClaseController {
     @Autowired
 	private IClaseService claseService;
 	
-	@RequestMapping(value = {"/listarCla","/"},method = RequestMethod.GET)
+	@RequestMapping(value = {"/listarCla"},method = RequestMethod.GET)
 	public String listar(@RequestParam(name="page", defaultValue="0")
     int page, Model model) {
 		Pageable pageRequest = PageRequest.of(page,8);

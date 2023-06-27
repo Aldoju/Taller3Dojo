@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.trabfinal.dojo.models.entity.Horario;
 import com.trabfinal.dojo.models.services.IHorarioService;
+import com.trabfinal.dojo.models.services.ISenseiService;
 import com.trabfinal.dojo.util.paginator.PageRender;
 
 import jakarta.validation.Valid;
@@ -33,6 +34,9 @@ import jakarta.validation.Valid;
 public class HorarioController {
     @Autowired
     private IHorarioService horarioService;
+
+    @Autowired
+    private ISenseiService senseiService;
 
    @RequestMapping(value="/listarHor", method = RequestMethod.GET)
     public String listar(@RequestParam(name="page", defaultValue="0")
@@ -50,15 +54,16 @@ public class HorarioController {
     
 
     @RequestMapping(value="/formHor", method = RequestMethod.GET)
-    public String crear(Map<String,Object> model){
+    public String crear(Map<String,Object> model,Model mod){
         Horario horario=new Horario();
         model.put("horario",horario);
         model.put("titulo","Formulario de Horario");
+        mod.addAttribute("senseis", senseiService.findAll());
         return "/horario/form";
     }
 
     @RequestMapping(value="/formHor/{id}")
-    public String editar(@PathVariable(value="id") Long id,Map<String, Object> model,RedirectAttributes flash){
+    public String editar(@PathVariable(value="id") Long id,Map<String, Object> model,RedirectAttributes flash,Model mod){
         Horario horario=null;
         if(id>0){
             horario=horarioService.findOne(id);
@@ -72,6 +77,7 @@ public class HorarioController {
         }
         model.put("horario",horario);
         model.put("titulo","Editar Horario");
+        mod.addAttribute("senseis", senseiService.findAll());
         return "/horario/form";
     }
 

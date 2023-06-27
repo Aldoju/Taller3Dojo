@@ -22,11 +22,8 @@
 					<th>nombre</th>
 					<th>apellido</th>
 					<th>edad</th>
-					<th>nivel</th>
 					<th>celular</th>
-					<th>peso</th>
-					<th>altura</th>
-					<th>Sensei</th>
+					<th>Clase</th>
 					<th>editar</th>
 					<th>eliminar</th>
 					
@@ -38,11 +35,8 @@
 					<td th:text="${alumno.nombre}"></td>
 					<td th:text="${alumno.apellido}"></td>
 					<td th:text="${alumno.edad}"></td>
-					<td th:text="${alumno.nivel}"></td>
 					<td th:text="${alumno.celular}"></td>
-					<td th:text="${alumno.peso}"></td>
-					<td th:text="${alumno.altura}"></td>
-					<td th:text="${alumno.sensei.nombres +' ' + alumno.sensei.apellidos}"></td>
+					<td th:text="${alumno.clase.nombre}"></td>
 					<td><a class="btn btn-primary btn-xs" th:href="@{/formAl/} + ${alumno.id}" th:text="'editar'"></a></td>
 					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminarAl/} + ${alumno.id}" 
 					th:text="'eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
