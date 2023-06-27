@@ -100,6 +100,18 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 				</div>
 			</div>
 
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Clase</label>
+				<div class="col-sm-1">
+				<input type="text" id="inputclase" th:field="*{clase.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+				class="form-text text-danger" th:if="${#fields.hasErrors('clase.id')}" th:errors="*{clase.id}"></small>
+				</div>
+				<select class="form-select" id="selectclase" aria-label="Default select example" th:field="*{clase.id}">
+					<option value="" disabled selected>Selecciona una clase</option>
+					<option th:each="clas : ${clases}" th:value="${clas.id}" th:text="${clas.nombre}"></option>
+				</select>
+			</div>
+
 			
 			
 			<div class="form-group row">
@@ -109,5 +121,15 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 			</div>
 		</form>
 	</div>
+
+
+
+	<script>
+		document.getElementById('selectclase').addEventListener('change', function() {
+			var selectedValue = this.value;
+			document.getElementById('inputclase').value = selectedValue;
+		});
+	</script>
+
 </body>
 </html>
