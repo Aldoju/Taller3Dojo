@@ -56,21 +56,21 @@ public class SenseiController {
 		return "/sensei/frmSensei";
 	}
 
-	 @RequestMapping(value = "/editSen", method = RequestMethod.POST)
-	public String editar(@Validated Sensei sensei,BindingResult result,
-		Model model, SessionStatus status) {
-		Long codsen=sensei.getClase().getId();
-		sensei.setClase(claseService.findOne(codsen));
-		senseiService.save(sensei);
+	// @RequestMapping(value = "/editSen", method = RequestMethod.POST)
+	// public String editar(@Validated Sensei sensei,BindingResult result,
+	// 	Model model, SessionStatus status) {
+	// 	Long codsen=sensei.getClase().getId();
+	// 	sensei.setClase(claseService.findOne(codsen));
+	// 	senseiService.save(sensei);
 
-		if(result.hasErrors()) {
-			model.addAttribute("titulo", "Formulario del Alumno");
-			return "alumno/frmAlumno";
-		}
+	// 	if(result.hasErrors()) {
+	// 		model.addAttribute("titulo", "Formulario del Sensei");
+	// 		return "alumno/frmSensei";
+	// 	}
 		
-		status.setComplete();
-		return "redirect:/listar";
-	}
+	// 	status.setComplete();
+	// 	return "redirect:/listar";
+	// }
 
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public String registrar(@Validated Sensei sensei, BindingResult result,
