@@ -20,8 +20,17 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 			</ul>
 		</div>
 		<form th:action="@{/formM}" th:object="${matricula}" method="post">
-			<div class="form-group row">
-                <label class="col-sm-2 col-form-label">Grado</label>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Alumno</label>
+                <div class="col-sm-1">
+                <input type="text" id="alumno" th:field="*{alumno.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+                class="form-text text-danger" th:if="${#fields.hasErrors('alumno.id')}" th:errors="*{alumno.id}"></small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Clase</label>
                 <div class="col-sm-1">
                 <input type="text" id="inputClase" th:field="*{clase.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
                 class="form-text text-danger" th:if="${#fields.hasErrors('clase.id')}" th:errors="*{clase.id}"></small>
@@ -31,7 +40,7 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
                     <option th:each="ob : ${clases}" th:value="${ob.id}" th:text="${ob.nombre}"></option>
                 </select>
             </div>
-
+			
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Sensei</label>
                 <div class="col-sm-1">
@@ -43,7 +52,7 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
                     <option th:each="ob : ${senseis}" th:value="${ob.idSensei}" th:text="${ob.nombres}"></option>
                 </select>
             </div>
-			
+
 			<div class="form-group row">
 				<div class="col-sm-6">
 					<input type="submit" value="Crear alumno" class="btn btn-primary" />
@@ -58,15 +67,24 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
         var selectedValue = this.value;
         document.getElementById('inputClase').value = selectedValue;
     });
+
+    document.getElementById('selectSensei').addEventListener('change', function() {
+        var selectedValue = this.value;
+        document.getElementById('inputSensei').value = selectedValue;
+    });
 </script>
 
-<script>
+<!-- <script>
 	var selectClase=document.getElementById('inputClase');
 	selectClase.addEventListener('change',function(){
 		var selectedValue=selectClase.value;
-		fetch('/consultaSensei?claseId= '+selectedValue)
+		fetch('/consultaSensei' +selectedValue)
 		.then(response => response.json())
 		.then(data => {
+            alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
 			var selectSensei = document.getElementById('selectSensei');
                 selectSensei.innerHTML = ""; // Limpiar opciones existentes
                 data.forEach(function (nombre) {
@@ -79,6 +97,6 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
             .catch(error => {
                 console.error('Error:', error);
             });
-		}); 
-</script>
+		});
+</script> -->
 </html>

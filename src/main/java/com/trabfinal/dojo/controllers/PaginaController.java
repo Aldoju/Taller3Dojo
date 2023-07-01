@@ -2,6 +2,8 @@ package com.trabfinal.dojo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class PaginaController {
@@ -23,6 +25,12 @@ public class PaginaController {
     public String evento(){
         return "frames/eventos";
     }
+
+    @GetMapping("/galeria")
+    public String galeria(){
+        return "frames/galeria";
+    }
+    
 }
 
 

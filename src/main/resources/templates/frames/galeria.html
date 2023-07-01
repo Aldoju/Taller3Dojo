@@ -5,5 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de fotos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"></head>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <style>
+        .galeria-fondo{
+        background-image: url("/img/cabez.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% auto; 
+        background-position: center; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        font-size: 95px;
+        font-family: 'Times New Roman', Times, serif;
+        color: red;
+        }
+        .sub-text{
+        color: #333;
+        text-align: center;
+        font-size: 30px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px;
+        text-transform: uppercase;
+        }
+        .subb-text{
+        color: #3E3B3B;
+        text-align: center;
+        font-size: 14px;
+        font-family: Open Sans;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 23.8px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        }
+        .imagen-pequena{
+            position: center;
+            max-width: 600px;
+        }
+        body{
+            background-color: #827c7c;
+        }
+    </style>
 </head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <div class="galeria-fondo">Galería de Fotos</div>
+    <div class="sub-text">NUESTRA GALERIA DE FOTOS</div>
+    <div class="subb-text">Únete a nuestro club de artes marciales y mantente saludable.</div>
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/img/profes.jpeg" class="d-block w-100 imagen-pequena mx-auto" >
+            </div>
+            <div class="carousel-item">
+                <img src="/img/alumnos.png" class="d-block w-100 imagen-pequena mx-auto" alt="Imagen">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/grupo.png" class="d-block w-100 imagen-pequena mx-auto" alt="..." >
+            </div>
+            <div class="carousel-item">
+                <img src="/img/senseis2.png" class="d-block w-100 imagen-pequena mx-auto" alt="..." >
+            </div>
+            <div class="carousel-item">
+                <img src="/img/entrena.jpeg" class="d-block w-100 imagen-pequena mx-auto" alt="..." >
+            </div>
+            <div class="carousel-item">
+                <img src="/img/entrena1.jpeg" class="d-block w-100 imagen-pequena mx-auto" alt="..." >
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
