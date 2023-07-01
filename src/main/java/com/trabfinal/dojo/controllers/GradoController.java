@@ -57,7 +57,7 @@ public class GradoController {
 		}
 		model.put("grado", grado);
 		model.put("titulo", "Editar grado");		
-		return "/grado/form";
+		return "grado/form";
 	}
 	@RequestMapping(value = "/formGra", method = RequestMethod.POST)
 	public String registrar(@Validated Grado grado, BindingResult result,
