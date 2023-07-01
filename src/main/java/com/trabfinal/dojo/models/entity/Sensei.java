@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.persistence.CascadeType;
@@ -46,12 +47,9 @@ public class Sensei implements Serializable{
     @ManyToOne(fetch = FetchType.LAZY)
 	private Clase clase;
 
-    //relacion de muchos a muchos con evento
-    //relacion de uno a muchos con evento-profesor
+    @OneToOne(mappedBy = "sensei")
+    private Matricula matricula;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idSensei")
-	private List<EventoSensei> items;
 
 
 
@@ -151,12 +149,5 @@ public class Sensei implements Serializable{
         this.clase = clase;
     }
 
-    public List<EventoSensei> getItems() {
-        return items;
-    }
-
-    public void setItems(List<EventoSensei> items) {
-        this.items = items;
-    }
     
 }

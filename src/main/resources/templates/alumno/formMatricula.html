@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<header th:replace="fragments/header :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"
+class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
+
+		<div th:object="${matricula}" th:remove="tag">
+			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+		</div>
+		<form th:action="@{/formM}" th:object="${matricula}" method="post">
+			<div class="form-group row">
+                <label class="col-sm-2 col-form-label">Grado</label>
+                <div class="col-sm-1">
+                <input type="text" id="inputClase" th:field="*{clase.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+                class="form-text text-danger" th:if="${#fields.hasErrors('clase.id')}" th:errors="*{clase.id}"></small>
+                </div>
+                <select class="form-select" id="selectClase" aria-label="Default select example" th:field="*{clase.id}">
+                    <option value="" disabled selected>Selecciona una clase</option>
+                    <option th:each="ob : ${clases}" th:value="${ob.id}" th:text="${ob.nombre}"></option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Sensei</label>
+                <div class="col-sm-1">
+                <input type="text" id="inputSensei" th:field="*{sensei.idSensei}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
+                class="form-text text-danger" th:if="${#fields.hasErrors('sensei.idSensei')}" th:errors="*{sensei.idSensei}"></small>
+                </div>
+                <select class="form-select" id="selectSensei" aria-label="Default select example" th:field="*{sensei.idSensei}">
+                    <option value="" disabled selected>Selecciona una clase</option>
+                    <option th:each="ob : ${senseis}" th:value="${ob.idSensei}" th:text="${ob.nombres}"></option>
+                </select>
+            </div>
+			
+			<div class="form-group row">
+				<div class="col-sm-6">
+					<input type="submit" value="Crear alumno" class="btn btn-primary" />
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+ <script>
+	document.getElementById('selectClase').addEventListener('change', function() {
+        var selectedValue = this.value;
+        document.getElementById('inputClase').value = selectedValue;
+    });
+</script>
+
+<script>
+	var selectClase=document.getElementById('inputClase');
+	selectClase.addEventListener('change',function(){
+		var selectedValue=selectClase.value;
+		fetch('/consultaSensei?claseId= '+selectedValue)
+		.then(response => response.json())
+		.then(data => {
+			var selectSensei = document.getElementById('selectSensei');
+                selectSensei.innerHTML = ""; // Limpiar opciones existentes
+                data.forEach(function (nombre) {
+                    var option = document.createElement('option');
+                    option.value = nombre;
+                    option.text = nombre;
+                    selectSensei.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+		}); 
+</script>
+</html>

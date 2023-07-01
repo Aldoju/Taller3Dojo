@@ -4,6 +4,7 @@ import java.io.Serializable;
 // import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 // import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +19,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 // import jakarta.persistence.Temporal;
 // import jakarta.persistence.TemporalType;
@@ -46,25 +48,20 @@ public class Alumno  implements Serializable{
     @NotEmpty
     private String altura;
 
-	@ManyToOne
-	private Clase clase;
+	// @ManyToOne
+	// private Clase clase;
 
+	
 
-	@ManyToMany
-    @JoinTable(
-        name="AlumnoEvento",
-        joinColumns = @JoinColumn( name="idAlumno"),
-        inverseJoinColumns = @JoinColumn(name="idEvento")
-    )
-	private List<Evento> eventos;
+	@OneToOne(mappedBy = "alumno")
+    private Matricula matricula;
 
-
-	public Clase getClase(){
-		return clase;
-	}
-	public void setClase(Clase clase){
-		this.clase = clase;
-	}
+	// public Clase getClase(){
+	// 	return clase;
+	// }
+	// public void setClase(Clase clase){
+	// 	this.clase = clase;
+	// }
 
     
     private static  final long serialVersionUID=1L;
@@ -120,11 +117,11 @@ public class Alumno  implements Serializable{
 	public void setAltura(String altura) {
 		this.altura = altura;
 	}
-	public List<Evento> getEventos() {
-		return eventos;
+	public Matricula getMatricula() {
+		return matricula;
 	}
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
 	}
 	
     

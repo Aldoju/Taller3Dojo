@@ -19,6 +19,10 @@ public class PaginaController {
     public String principal(){
         return "frames/principal";
     }
+    @GetMapping("/eventos")
+    public String evento(){
+        return "frames/eventos";
+    }
 }
 
 

@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.persistence.CascadeType;
@@ -32,18 +33,18 @@ public class Clase implements Serializable{
     @NotEmpty
     private String descripcion;
 
-    @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Alumno> alumnos;
+    // @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    // private List<Alumno> alumnos;
 
     @ManyToMany(mappedBy = "clase")
 	private List<Grado> grados;
 
-    @OneToMany( mappedBy = "clase", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<Evento> eventos;
 
     @OneToMany(mappedBy = "clase", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Sensei> senseis;
 
+    @OneToOne(mappedBy = "clase")
+    private Matricula matricula;
 
     public Long getId() {
         return id;
@@ -61,21 +62,14 @@ public class Clase implements Serializable{
         this.nombre = nombre;
     }
 
-    public List<Alumno> getAlumnos() {
-        return alumnos;
-    }
+    // public List<Alumno> getAlumnos() {
+    //     return alumnos;
+    // }
 
-    public void setAlumnos(List<Alumno> alumnos) {
-        this.alumnos = alumnos;
-    }
+    // public void setAlumnos(List<Alumno> alumnos) {
+    //     this.alumnos = alumnos;
+    // }
 
-    public List<Evento> getEventos() {
-        return eventos;
-    }
-
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
-    }
 
     public List<Sensei> getSenseis() {
         return senseis;
