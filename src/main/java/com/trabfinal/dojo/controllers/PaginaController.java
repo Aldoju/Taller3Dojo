@@ -15,6 +15,10 @@ public class PaginaController {
         return "frames/contactos";
     }
 
+    @GetMapping("/principal")
+    public String principal(){
+        return "frames/principal";
+    }
 }
 
 

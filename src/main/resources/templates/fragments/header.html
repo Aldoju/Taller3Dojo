@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <title th:text="${titulo}">Insert title here</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
 
-<header th:fragment="header">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Dojo Bushin Karate Do</a>
+<header th:fragment="header" >
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #b29400; font-style:italic">
+    <a class="navbar-brand header-bg" th:href="@{/principal}"> 
+        <img src="/img/LogoDojo.jpg" alt="Dojo Bushin Karate Do Logo" width="70" height="70"> Dojo Bushin Karate Do</a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarNav" aria-controls="navbarNav"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -36,8 +38,7 @@
 
 <body>
 
-</body>
-
 <footer>
 
 </footer>
+</html>
