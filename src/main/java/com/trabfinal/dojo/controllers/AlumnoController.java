@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.trabfinal.dojo.models.entity.Alumno;
+import com.trabfinal.dojo.models.entity.Clase;
 import com.trabfinal.dojo.models.entity.Matricula;
+import com.trabfinal.dojo.models.entity.Sensei;
 import com.trabfinal.dojo.models.services.IAlumnoService;
 import com.trabfinal.dojo.models.services.IClaseService;
+import com.trabfinal.dojo.models.services.IHorarioService;
+import com.trabfinal.dojo.models.services.ISenseiService;
 import com.trabfinal.dojo.models.services.MatriculaService;
 
 import jakarta.persistence.EntityManager;
@@ -39,6 +43,12 @@ public class AlumnoController {
 
 	@Autowired
 	private IClaseService claseService;
+
+	@Autowired
+	private IHorarioService horarioService;
+
+	@Autowired
+	private ISenseiService senseiService;
 
 	@Autowired
 	private MatriculaService matriculaService;
@@ -157,12 +167,23 @@ public class AlumnoController {
 		model.put("matricula", matricula);
 		model.put("titulo", "Formulario de Matricula");
 		mod.addAttribute("clases", claseService.findAll());
+		mod.addAttribute("senseis", senseiService.findAll());
 		return "alumno/formMatricula";
 	}
 	
 	@RequestMapping(value = "/formM", method = RequestMethod.POST)
-	public String registrarMatricula(@Validated Matricula matricula, BindingResult result,
+	public String registrarMatricula(@Validated Matricula matricula,BindingResult result,
 			Model model, SessionStatus status) {
+		Long idal=matricula.getAlumno().getId();
+		Long id= matricula.getClase().getId();
+		Long idsen=matricula.getSensei().getIdSensei();
+		Alumno alumno=entityManager.find(Alumno.class,idal);
+		Clase clase = entityManager.find(Clase.class, id);
+		Sensei sensei=entityManager.find(Sensei.class,idsen);
+		matricula.setAlumno(alumno);
+		matricula.setClase(clase);
+		matricula.setSensei(sensei);
+		matriculaService.save(matricula);
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario Matricula");
 			return "alumno/formMatricula";
@@ -173,15 +194,15 @@ public class AlumnoController {
 	}
 
 
-	@GetMapping("/consultaSensei")
-	public ResponseEntity<List<String>> ejecutarConsultaJPA(@RequestParam("claseId") Long claseId) {
-		String queryString = "SELECT s.nombres FROM Sensei s WHERE s.claseId = :claseId";
-		TypedQuery<String> query = entityManager.createQuery(queryString, String.class);
-		query.setParameter("claseId", claseId);
-		List<String> results = query.getResultList();
+	// @GetMapping("/consultaSensei/{claseId}")
+	// public ResponseEntity<List<String>> ejecutarConsultaJPA(@RequestParam("claseId") Long claseId) {
+	// 	String queryString = "SELECT s.nombres FROM Sensei s WHERE s.claseId = :claseId";
+	// 	TypedQuery<String> query = entityManager.createQuery(queryString, String.class);
+	// 	query.setParameter("claseId", claseId);
+	// 	List<String> results = query.getResultList();
 
-		return ResponseEntity.ok(results);
-	}
+	// 	return ResponseEntity.ok(results);
+	// }
 }
 
 
