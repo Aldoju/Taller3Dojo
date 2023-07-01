@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+            grid-gap: 20px; /* Espacio entre elementos */
+            }
+
+        .item {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Columna de la imagen ocupa 1 parte y columna de texto ocupa 2 partes */
+            align-items: center; /* Centrar verticalmente los elementos dentro del item */
+            }
+
+        .image img {
+            max-width: 100%; /* Ajustar la imagen al ancho del contenedor */
+            }
+
+        .text {
+            grid-gap: 50px; /* Espacio horizontal entre la imagen y el texto */
+            }
+
+    </style>
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <div class="container">
+        <div class="item">
+          <div class="image">
+            <img src="/img/Sensei.png" alt="Imagen">
+          </div>
+          <div class="text">¡Bienvenidos al Dojo Bushin Karate Do!
+            <p>En nuestro dojo, te ofrecemos la oportunidad de
+            sumergirte en el apasionante mundo del karate. 
+            Aquí encontrarás un ambiente de aprendizaje 
+            inspirador, donde podrás desarrollar tus habilidades físicas, mentales y espirituales mientras te adentras en el camino del karate.
+            
+            Nuestro equipo de instructores altamente calificados y comprometidos te guiará en tu viaje, sin importar tu nivel de experiencia. Desde principiantes hasta practicantes avanzados, todos son bienvenidos a unirse a nuestra familia de karatekas</p></div>
+        </div>
+      </div>
+      
+</body>
+</html>
