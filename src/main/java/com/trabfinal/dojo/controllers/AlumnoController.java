@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,15 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.trabfinal.dojo.models.entity.Alumno;
+import com.trabfinal.dojo.models.entity.Matricula;
 import com.trabfinal.dojo.models.services.IAlumnoService;
 import com.trabfinal.dojo.models.services.IClaseService;
+import com.trabfinal.dojo.models.services.MatriculaService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 
@@ -34,6 +39,9 @@ public class AlumnoController {
 
 	@Autowired
 	private IClaseService claseService;
+
+	@Autowired
+	private MatriculaService matriculaService;
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -113,15 +121,67 @@ public class AlumnoController {
 		return "redirect:/listarAl";
 	}	
 
-	@GetMapping("/consultaHorarios")
-    public List<Object> ejecutarConsultaJPA() {
-        String queryString = "Select s.nombre from Sensei s join Clase c on s.idClase=c.idClase"; // Tu consulta JPA aquí
-        //"SELECT h.dias from horario h inner join Sensei s on h.senseiId=s.idSensei inner join Clase c on s.idClase=c.idClase where c.nombre=Karate"
-        TypedQuery<Object> query = entityManager.createQuery(queryString, Object.class);
-        List<Object> results = query.getResultList();
-        
-        return results;
-    }
+	// @GetMapping("/consultaHorarios")
+    // public String ejecutarConsultaJPA(@RequestParam("selectedValue") Long claseId) {
+    //     String queryString = "SELECT s.nombres FROM Clase c JOIN c.senseis s";
+    //     TypedQuery<String> query = entityManager.createQuery(queryString, String.class);
+	// 	query.setMaxResults(1); // Limitar los resultados a 1
+	// 	List<String> results = query.getResultList();
+	// 	if (!results.isEmpty()) {
+	// 		String primerRegistro = results.get(0);
+	// 		return primerRegistro;
+	// 	} else {
+	// 		return "No se encontraron registros";
+    // 	}
+    // }
+
+
+	//-----------------------------------------------------
+	@RequestMapping(value = "/listarM",method = RequestMethod.GET)
+	public String listarM(Model model) {
+		model.addAttribute("titulo","Listado de alumnos");
+		model.addAttribute("alumnos",matriculaService.findAll());
+		return "matricula/listar";
+	}
+
+	@GetMapping(value = "/formM/{id}")
+	public String formularioMatricula(@PathVariable(value="id")Long id,Map<String, Object> model,Model mod) {
+		Matricula matricula=new Matricula();
+		Alumno alumno=null;
+		if(id>0) {
+			alumno=alumnoService.findOne(id);
+			matricula.setAlumno(alumno);
+		}else {
+		   return "redirect:alumno/listar";		   
+		}
+		model.put("matricula", matricula);
+		model.put("titulo", "Formulario de Matricula");
+		mod.addAttribute("clases", claseService.findAll());
+		return "alumno/formMatricula";
+	}
+	
+	@RequestMapping(value = "/formM", method = RequestMethod.POST)
+	public String registrarMatricula(@Validated Matricula matricula, BindingResult result,
+			Model model, SessionStatus status) {
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Formulario Matricula");
+			return "alumno/formMatricula";
+		}
+		matriculaService.save(matricula);
+		status.setComplete();
+		return "redirect:/listarAl";
+	}
+
+
+	@GetMapping("/consultaSensei")
+	public ResponseEntity<List<String>> ejecutarConsultaJPA(@RequestParam("claseId") Long claseId) {
+		String queryString = "SELECT s.nombres FROM Sensei s WHERE s.claseId = :claseId";
+		TypedQuery<String> query = entityManager.createQuery(queryString, String.class);
+		query.setParameter("claseId", claseId);
+		List<String> results = query.getResultList();
+
+		return ResponseEntity.ok(results);
+	}
 }
 
 

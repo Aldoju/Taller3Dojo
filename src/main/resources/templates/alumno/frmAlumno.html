@@ -85,18 +85,18 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 				</div>
 			</div>
 			
-
+<!-- 
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Clase</label>
 				<div class="col-sm-1">
 				<input type="text" id="inputClase" th:field="*{clase.id}" class="form-control" th:errorclass="'form-control alert-danger'" /> <small
 				class="form-text text-danger" th:if="${#fields.hasErrors('clase.id')}" th:errors="*{clase.id}"></small>
 				</div>
-				<select class="form-select" id="selectSensei" aria-label="Default select example" th:field="*{clase.id}">
+				<select class="form-select" id="selectClase" aria-label="Default select example" th:field="*{clase.id}">
 					<option value="" disabled selected>Selecciona una clase</option>
 					<option th:each="clas : ${clases}" th:value="${clas.id}" th:text="${clas.nombre}"></option>
 				</select>
-			</div>
+			</div> -->
 			
 			<div class="form-group row">
 				<div class="col-sm-6">
@@ -107,17 +107,24 @@ class="text-secondary border border-success border-top-0 border-left-0 border-ri
 	</div>
 </body>
 
-<script>
-	fetch('consultaHorarios')
-    .then(response => response.json())
-    .then(data => {
-        // Aquí puedes trabajar con los datos obtenidos de la consulta JPA
-        //console.log(data);
-		alert(data)
-    })
-    .catch(error => {
-        console.error('Error:', error);
+<!-- <script>
+	document.getElementById('selectClase').addEventListener('change', function() {
+        var selectedValue = this.value;
+        document.getElementById('inputClase').value = selectedValue;
     });
-
+</script>
+<script>
+	var selectClase=document.getElementById('selectClase');
+	selectClase.addEventListener('change',function(){
+		var selectedValue=selectClase.value;
+		fetch('consultaHorarios?selectedValue= '+selectedValue)
+		.then(response => response.json())
+		.then(data => {
+			alert(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	}) -->
 </script>
 </html>

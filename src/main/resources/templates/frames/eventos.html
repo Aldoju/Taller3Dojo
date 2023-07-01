@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <title>Eventos</title>
+    <style>
+        *{
+    box-sizing:border-box;
+    margin:0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 20px;
+
+}
+
+.trprod {
+    width: auto;
+    max-width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.tarjeta {
+    width: 250px;
+    height: auto;
+    border-radius: 15px;
+    margin: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+    .tarjeta img {
+        padding: 20px;
+        border-radius: 30px;
+        width: 250px;
+        height: 250px;
+    }
+
+    .btt {
+        font-weight: 500;
+        text-decoration: none;
+        background-color: #AF9786;
+        border-radius: 5px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <div class="trprod">
+             <div class="tarjeta" style="background-color:#E4C9B6">
+                <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/355348813_758453739434498_3131831174875447006_n.jpg?_nc_cat=100&cb=99be929b-59f725be&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=ZhIGGFj6OqMAX-Qg1de&_nc_ht=scontent-lim1-1.xx&oh=00_AfD4DboOlK2-6_6EBeExMG7ICIItW-I82ImPyxPEeckcHA&oe=64A58362">
+                <h5>BOXEO OPEN 2023</h5>  
+                <a> la federación deportiva Peruana de boxeo presenta su tercer evento 
+                    <br>🗓️ del 22 al 24 de Junio
+                    <br>📍Golden Boxing Peru</a><br><br>
+                <a class="btt" href="https://www.facebook.com/photo/?fbid=758453712767834&set=pb.100058096371680.-2207520000.&locale=es_LA">Ver más</a>
+            </div>
+            <div class="tarjeta" style="background-color:#E4C9B6">
+                <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/356623958_650393283780928_16291582039746852_n.jpg?_nc_cat=108&cb=99be929b-59f725be&ccb=1-7&_nc_sid=730e14&_nc_ohc=WYi4z1hi7-sAX8laTNU&_nc_ht=scontent-lim1-1.xx&oh=00_AfBrEKffUqUEpC2z8kr6bqeakQvR3g1r6RAWUdyU1JAWsg&oe=64A4E129">
+                <h5>Open Panamericano Guayaquil 2023</h5>  
+                <a> Iniciará el evento clasificatorio para los Juegos Panamericanos Santiago 2023 y los Juegos Olímpicos Paris 2024.
+                    <br>🗓️ 30 de Junio
+                    <br>📍Guayaquil</a><br>
+                <a class="btt" href="https://www.facebook.com/photo/?fbid=650393287114261&set=a.550808633739394&locale=es_LA">Ver más</a>
+            </div>
+            <div class="tarjeta" style="background-color:#E4C9B6">
+                <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/356385494_980541893331372_7595420481668477016_n.jpg?_nc_cat=104&cb=99be929b-59f725be&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=sWuEES-UPM0AX9bi1zF&_nc_ht=scontent-lim1-1.xx&oh=00_AfBNhQvryFQVDqRSGqlXH5DmNjl6NzJyQdy1Alts1SNFpQ&oe=64A57C35">
+                <h5>XVI Copa Las Águilas 2023</h5>  
+                <a> Este evento cuenta con el aval de la Federación Deportiva Peruana de Taekwondo.
+                    <br>🗓️ Domingo 02 de Julio
+                    <br>📍 Colegio Alcides Vigo Hurtado, Surco</a><br><br>
+                <a class="btt" href="https://www.facebook.com/federaciontkd/?locale=es_LA">Ver más</a>
+            </div>
+            <div class="tarjeta" style="background-color:#E4C9B6">
+                <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/355462113_743989804399034_6121835369957928783_n.jpg?stp=dst-jpg_s1080x2048&_nc_cat=107&cb=99be929b-59f725be&ccb=1-7&_nc_sid=730e14&_nc_ohc=QD82ayqgxIgAX8uZFfv&_nc_ht=scontent-lim1-1.xx&oh=00_AfDhMMKvMyoDHaDxa2-9JFbzrr-pVLYBSFVjuMqQ0MZ2CQ&oe=64A52E8D">
+                <h5>2DO JUEGOS ESCOLARES DE KARATE.</h5>  
+                <a> Grandes premios para los ganadores. 
+                    <br>🗓️ Domingo 09 de Julio
+                    <br>📍Auditorio del colegio fe y alegría</a><br><br>
+                <a class="btt" href="https://www.facebook.com/KarateEventosPeru/posts/pfbid08KZvhgEVGxaJWeFRjqcbt5Kz3KnrtWHJdrEVxEzb2QFVTabR4o5fNmGgsUUsXm3jl">Ver más</a>
+            </div>
+            <div class="tarjeta" style="background-color:#E4C9B6">
+                <img src="https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/356635339_747546777376670_7385109607361176641_n.jpg?_nc_cat=108&cb=99be929b-59f725be&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=pRguUuo-uUIAX-DdW93&_nc_ht=scontent-lim1-1.xx&oh=00_AfDgU0holjDWtrX0Tmxd7QBWg0GDAowPvrI99rysVVUXEg&oe=64A4D226">
+                <h5>II Camponeato de Karate</h5>  
+                <a> Se alegra de presentar el evento de karate, esperando tu participación!
+                    <br>🗓️Domingo 23 de Julio
+                    <br>📍Mini coliseo william dyer</a><br><br><br>
+                <a class="btt" href="https://www.facebook.com/photo/?fbid=747546780710003&set=a.504447985019885&locale=es_LA">Ver más</a>
+            </div>
+    </div>
+</body>
+</html>

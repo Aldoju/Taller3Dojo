@@ -94,7 +94,7 @@ public class ClaseController {
 
 //------------------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/formCla")
-	public String formularioCliente(Map<String, Object> model) {
+	public String formularioClase(Map<String, Object> model) {
 		Clase clase=new Clase();
 		model.put("clase", clase);
 		model.put("titulo", "Formulario del clase");
