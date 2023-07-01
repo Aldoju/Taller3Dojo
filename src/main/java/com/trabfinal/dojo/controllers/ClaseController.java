@@ -101,8 +101,7 @@ public class ClaseController {
 		return "clase/form";
 	}
 	@RequestMapping(value = "/formCla/{id}")
-	public String editar(@PathVariable (value = "id") Long id,
-			Map<String, Object> model) {
+	public String editar(@PathVariable (value = "id") Long id,Map<String, Object> model) {
 		Clase clase=null;
 		if(id>0) {
 			clase=claseService.findOne(id);

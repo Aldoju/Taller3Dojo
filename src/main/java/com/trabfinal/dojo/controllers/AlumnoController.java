@@ -84,7 +84,7 @@ public class AlumnoController {
 		model.put("alumno", alumno);
 		mod.addAttribute("clases", claseService.findAll());
 		model.put("titulo", "Editar Alumno");		
-		return "alumno/editar";
+		return "alumno/frmAlumno";
 	}
 	
 	// @RequestMapping(value = "/obtesen/{id}")
